@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess Game</title>
+  <script type="module" src="./dist/index.js"></script>
+  <link rel="stylesheet" href="style.css" />
+
+
+  <style>
+    #controls {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <button id="create-room">Create Room</button>
+    <input type="text" id="room-password" placeholder="Enter room password">
+    <button id="join-room">Join Room</button>
+    <button id="leave-room" style="display: none;">Leave Room</button>
+  </div>
+  <canvas id="chess-board"></canvas>
+</body>
+</html>
