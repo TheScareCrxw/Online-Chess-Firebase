@@ -123,7 +123,7 @@ class PlayerControl {
         this.movePiece(x, y);
         this.toggleMovingState();
         if (this.selectedPiece.movementCommand.isGameOver(this.blackToMove))
-          console.log("NOT GG");
+          console.log("GAME OVER");
         // console.log(this.selectedPiece)
         this.resetMoves();
       }

@@ -131,10 +131,6 @@ class Game {
         return WhitePieceFactory.make(pieceData.pieceType as Pieces, pieceData.x, newY, pieceData.firstMove);
       });
   
-      // Reverse the top and bottom rows only
-      const reversedMap = data.map.slice().reverse();
-  
-      this.map.gameMap = reversedMap;
   
       // Toggle turn
       this.playerControl.isMyTurn = !data.isPlayerBlackTurn;

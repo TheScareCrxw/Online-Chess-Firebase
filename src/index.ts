@@ -16,10 +16,13 @@ class Driver {
     const createRoomButton = document.getElementById("create-room");
     const joinRoomButton = document.getElementById("join-room");
     const leaveRoomButton = document.getElementById("leave-room");
+    const resignButton = document.getElementById("resign");
 
     createRoomButton.addEventListener("click", () => this.createRoom());
     joinRoomButton.addEventListener("click", () => this.joinRoom());
     leaveRoomButton.addEventListener("click", () => this.leaveRoom()); // Event listener for Leave Room button
+    resignButton.addEventListener("click", () => this.resignGame()); // Event listener for Resign button
+
 
     // Set up window unload event to handle disconnection
     window.addEventListener("beforeunload", () => this.leaveRoom());
@@ -78,6 +81,16 @@ class Driver {
     }
   }
 
+  private resignGame() {
+    const roomId = this.roomId;
+    const playerId = this.playerId;
+    if (roomId && playerId) {
+      const playerRef = ref(FirebaseClient.instance.db, `rooms/${roomId}/players/${playerId}`);
+      remove(playerRef);
+      console.log(`${playerId} resigned from room ${roomId}`);
+      this.hideGameControls(); // Hide game controls after resigning
+    }
+  }
   // Helper function to show game controls and hide join/create room buttons
   private showGameControls() {
     document.getElementById('chess-board').style.display = 'block';
@@ -85,6 +98,7 @@ class Driver {
     document.getElementById('room-password').style.display = 'none';
     document.getElementById('join-room').style.display = 'none';
     document.getElementById('leave-room').style.display = 'inline-block'; // Show Leave Room button
+    document.getElementById('resign').style.display = 'inline-block'; // Show Resign button
   }
 
   // Helper function to hide game controls and show join/create room buttons
@@ -94,6 +108,7 @@ class Driver {
     document.getElementById('room-password').style.display = 'inline-block';
     document.getElementById('join-room').style.display = 'inline-block';
     document.getElementById('leave-room').style.display = 'none'; // Hide Leave Room button
+    document.getElementById('resign').style.display = 'none'; // Hide Resign button
   }
 
   private listenForGameUpdates() {

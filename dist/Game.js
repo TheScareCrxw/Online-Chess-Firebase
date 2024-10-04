@@ -110,9 +110,6 @@ class Game {
                 console.log(pieceData);
                 return WhitePieceFactory.make(pieceData.pieceType, pieceData.x, newY, pieceData.firstMove);
             });
-            // Reverse the top and bottom rows only
-            const reversedMap = data.map.slice().reverse();
-            this.map.gameMap = reversedMap;
             // Toggle turn
             this.playerControl.isMyTurn = !data.isPlayerBlackTurn;
             // Redraw the board
